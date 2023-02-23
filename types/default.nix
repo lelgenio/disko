@@ -59,6 +59,8 @@ rec {
         "${dev}p${toString index}" # /dev/nvme0n1p1 style
       else if match "/dev/md/.+" dev != null then
         "${dev}${toString index}" # /dev/md/raid1 style
+      else if match "/dev/loop[0-7]" dev != null then
+        "${dev}p${toString index}" # /dev/loop1p1 style
       else
         abort ''
           ${dev} seems not to be a supported disk format. Please add this to disko in https://github.com/nix-community/disko/blob/master/types/default.nix
